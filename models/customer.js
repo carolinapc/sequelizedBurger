@@ -6,9 +6,5 @@ module.exports = function(sequelize, DataTypes) {
         }
     });
   
-    Customer.associate = function(models) {
-      Customer.hasOne(models.Burger,{as: "customer"});
-    };
-  
     return Customer;
   };
