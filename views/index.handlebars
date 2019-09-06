@@ -1,0 +1,44 @@
+<div class="card col-sm-5 p-0 mx-auto border-info">
+  <div class="card-header text-white bg-info">
+    Burgers Availabe
+  </div>
+  <div class="card-body">
+    <form class="create-form" action="/api/burgers" method="POST">
+        <div class="input-group mb-3">
+            <input id="name" name="name" type="text" class="form-control" placeholder="Add a burger" aria-label="Name" aria-describedby="btn">
+            <div class="input-group-append">
+                <button class="btn btn-info" type="submit" id="btn">Add</button>
+            </div>
+        </div>
+    </form>
+
+    <ul class="list-group list-group-flush">
+    {{#each burgers}}
+        {{#unless devoured}}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <span><i class="fas fa-hamburger text-info"></i> {{burger_name}}</span>
+            <button class="btn btn-info devour ml-auto" data-id="{{id}}">Devour it!</button>
+        </li>
+        {{/unless}}
+    {{/each}}
+    </ul>
+  </div>
+</div>
+
+<div class="card col-sm-5 p-0 mx-auto border-danger">
+  <div class="card-header text-white bg-danger">
+    Devoured Burgers!
+  </div>
+  <div class="card-body">
+    <ul class="list-group list-group-flush">
+        {{#each burgers}}
+            {{#if devoured}}
+            <li class="list-group-item">
+                <i class="far fa-grin-tongue-squint text-danger"></i>
+                {{burger_name}}
+            </li>
+            {{/if}}
+        {{/each}}
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css?family=Livvic|Pacifico&display=swap');
+
+*{
+    box-sizing: border-box;
+    font-family: 'Livvic', sans-serif;
+    color: #21456b;
+}
+
+html,body{
+    height:100%;
+    width:100%;
+    margin:0;
+    padding:0;
+    overflow-x:hidden;
+       
+}
+
+h1{
+    font-family: 'Pacifico', cursive;
+    color: #21456b;
+}
