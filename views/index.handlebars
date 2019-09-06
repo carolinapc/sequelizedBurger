@@ -15,10 +15,15 @@
     <ul class="list-group list-group-flush">
     {{#each burgers}}
         {{#unless devoured}}
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-            <span><i class="fas fa-hamburger text-info"></i> {{name}}</span>
-            <input type="text" name="customer" data-id="{{id}}" class="customer">
-            <button class="btn btn-info devour ml-auto" data-id="{{id}}">Devour it!</button>
+        <li class="list-group-item">
+            <span><i class="fas fa-hamburger text-info"></i> <b>{{name}}</b></span>
+            <div class="input-group mt-2 ml-auto">
+              <input id="name" name="customer" data-id="{{id}}" class="form-control customer" type="text" placeholder="Customer" aria-label="Name"
+                aria-describedby="btnDevour">
+              <div class="input-group-append">
+                <button class="btn btn-info devour" data-id="{{id}}" id="btnDevour">Devour it!</button>
+              </div>
+            </div>
         </li>
         {{/unless}}
     {{/each}}
@@ -36,7 +41,7 @@
             {{#if devoured}}
             <li class="list-group-item">
                 <i class="far fa-grin-tongue-squint text-danger"></i>
-                {{name}} - {{customer.name}}
+                {{name}} (devoured by: {{Customer.name}})
             </li>
             {{/if}}
         {{/each}}

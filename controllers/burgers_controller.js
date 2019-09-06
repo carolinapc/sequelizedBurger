@@ -6,6 +6,7 @@ var db = require("../models");
 //select all
 router.get("/", (req, res) => {
     db.Burger.findAll({ include: db.Customer }).then(function (data) {
+        console.log(data)
         res.render("index", { burgers: data });
     });
 });
