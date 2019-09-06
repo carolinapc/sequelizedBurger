@@ -6,7 +6,6 @@ var db = require("../models");
 //select all
 router.get("/", (req, res) => {
     db.Burger.findAll({ include: db.Customer }).then(function (data) {
-        console.log(data)
         res.render("index", { burgers: data });
     });
 });
@@ -15,6 +14,8 @@ router.get("/", (req, res) => {
 router.post("/api/burgers", (req, res) => {
     db.Burger.create(req.body).then(result => {
         res.redirect("/");
+    }).catch(err => {
+        res.status(500).end(err.errors[0].message);
     });
 });
 
@@ -26,19 +27,20 @@ router.put("/api/burgers", (req, res) => {
         db.Burger.update({
             devoured: true,
             CustomerId: customerId
-        },
+            },
             {
                 where: {
                     id: req.body.id
                 }
             }).then(result => {
                 if (result.changedRows === 0) {
-                    console.log(req.body.id);
                     res.status(404).end();
                 }
                 else {
                     res.status(200).end();
                 }
+            }).catch(err => {
+                res.status(500).end(err.errors[0].message);
             });
     };
 
@@ -49,6 +51,8 @@ router.put("/api/burgers", (req, res) => {
         }
     }).then(result => {
         devourBurger(result[0].id);    
+    }).catch(err => {
+        res.status(500).end(err.errors[0].message);
     });
 
 });
